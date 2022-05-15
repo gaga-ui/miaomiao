@@ -1,20 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import movieRouter from './movie'
+import cinemaRouter from './cinema'
+import mineRouter from './mine'
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    movieRouter,
+    cinemaRouter,
+    mineRouter,
+
+    //重定向，当上面所有都不匹配的时候，重定向到movie
+    {
+      path : '/*',
+      redirect : '/movie'
+    }
 ]
 
 const router = createRouter({
